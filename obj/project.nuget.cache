@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "lHH5jiC8/RdI+/vKVBVqwpFte3x4Mqa++wh9zir2a8w3oiVdv0GdT5w8CbuHv/+Glb/k2rQez2Xm7o1YUQI7gA==",
+  "dgSpecHash": "9e/EDmD1Fs/to8Wo3K+InNTvEvstvjIteauvLSMQKZNv0PSbKnHpYQdp8ExGPKdsFWx8RNOaBjl78SxuIiAsHw==",
   "success": true,
-  "projectFilePath": "C:\\WeatherBot\\WeatherBot.csproj",
+  "projectFilePath": "C:\\Programm\\WeatherBot\\WeatherBot.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\1\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512"
   ],

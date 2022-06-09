@@ -54,11 +54,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\WeatherBot\\WeatherBot.csproj",
+      "projectUniqueName": "C:\\Programm\\WeatherBot\\WeatherBot.csproj",
       "projectName": "WeatherBot",
-      "projectPath": "C:\\WeatherBot\\WeatherBot.csproj",
+      "projectPath": "C:\\Programm\\WeatherBot\\WeatherBot.csproj",
       "packagesPath": "C:\\Users\\1\\.nuget\\packages\\",
-      "outputPath": "C:\\WeatherBot\\obj\\",
+      "outputPath": "C:\\Programm\\WeatherBot\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
