@@ -1,0 +1,17 @@
+C:\WeatherBot\bin\Debug\net6.0\WeatherBot.exe
+C:\WeatherBot\bin\Debug\net6.0\WeatherBot.deps.json
+C:\WeatherBot\bin\Debug\net6.0\WeatherBot.runtimeconfig.json
+C:\WeatherBot\bin\Debug\net6.0\WeatherBot.dll
+C:\WeatherBot\bin\Debug\net6.0\WeatherBot.pdb
+C:\WeatherBot\obj\Debug\net6.0\WeatherBot.csproj.AssemblyReference.cache
+C:\WeatherBot\obj\Debug\net6.0\WeatherBot.GeneratedMSBuildEditorConfig.editorconfig
+C:\WeatherBot\obj\Debug\net6.0\WeatherBot.AssemblyInfoInputs.cache
+C:\WeatherBot\obj\Debug\net6.0\WeatherBot.AssemblyInfo.cs
+C:\WeatherBot\obj\Debug\net6.0\WeatherBot.csproj.CoreCompileInputs.cache
+C:\WeatherBot\obj\Debug\net6.0\WeatherBot.dll
+C:\WeatherBot\obj\Debug\net6.0\refint\WeatherBot.dll
+C:\WeatherBot\obj\Debug\net6.0\WeatherBot.pdb
+C:\WeatherBot\obj\Debug\net6.0\WeatherBot.genruntimeconfig.cache
+C:\WeatherBot\obj\Debug\net6.0\ref\WeatherBot.dll
+C:\WeatherBot\bin\Debug\net6.0\Newtonsoft.Json.dll
+C:\WeatherBot\obj\Debug\net6.0\WeatherBot.csproj.CopyComplete
