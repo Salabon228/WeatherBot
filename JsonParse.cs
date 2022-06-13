@@ -7,9 +7,7 @@ using Newtonsoft.Json.Linq;
 public struct JsonParse
 {
     static string json;
-
     public static string Json { get => json; set => json = value; }
-
     public static void Init(string jsonString)
     {
         Json = jsonString;

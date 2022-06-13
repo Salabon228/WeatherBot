@@ -9,17 +9,7 @@ class Program
 {
     private static async Task Main(string[] args)
     {
-        string token_weater = System.IO.File.ReadAllText("C://token_weather.txt");
         
-        string url = $"http://api.openweathermap.org/data/2.5/forecast?zip=171098,ru&appid={token_weater}&cnt=5&units=metric&lang=ru";
-
-        HttpClient hc = new HttpClient();
-
-        string json = hc.GetStringAsync(url).Result; // здесь ответ от сервера
-
-        JsonParse.Init(json);
-
-        List<ModelMessage> msgs = JsonParse.Parse();
         
         var botClient = new TelegramBotClient(System.IO.File.ReadAllText("C://token.txt"));
 
@@ -63,14 +53,78 @@ class Program
 
             await botClient.SendTextMessageAsync(chatId, messageText, replyMarkup: GetButtons());
 
+            List<ModelMessage> GetUrl(string zip)
+            {
+                string token_weater = System.IO.File.ReadAllText("C://token_weather.txt");       
+                string url = $"http://api.openweathermap.org/data/2.5/forecast?zip={zip},ru&appid={token_weater}&cnt=3&units=metric&lang=ru";
+                HttpClient hc = new HttpClient();
+                string json = hc.GetStringAsync(url).Result; // здесь ответ от сервера
+                JsonParse.Init(json);
+                List<ModelMessage> msgs = JsonParse.Parse();
+                return msgs;
+            }
+            
 
+            
             switch (messageText)
             {
-                case "Погода":
-                    for (int i = 0; i < msgs.Count; i++)
+                case "Бологое":
+                    List<ModelMessage> perem = GetUrl("171080");
+                    for (int i = 0; i < perem.Count; i++)
                     {
                        
-                        string msgForBot = ModelMessage.ToString(msgs[i]);
+                        string msgForBot = ModelMessage.ToString(perem[i]);
+
+                    // Echo received message text
+                    Message sentMessage = await botClient.SendTextMessageAsync(
+                        chatId: chatId,
+                        text: msgForBot,
+                        // parseMode: ParseMode.MarkdownV2,
+                        disableNotification: true,
+                        cancellationToken: cancellationToken);
+                        
+                    }
+                    break;
+                case "Ярославль":
+                    perem = GetUrl("150010");
+                    for (int i = 0; i < perem.Count; i++)
+                    {
+                       
+                        string msgForBot = ModelMessage.ToString(perem[i]);
+
+                    // Echo received message text
+                    Message sentMessage = await botClient.SendTextMessageAsync(
+                        chatId: chatId,
+                        text: msgForBot,
+                        // parseMode: ParseMode.MarkdownV2,
+                        disableNotification: true,
+                        cancellationToken: cancellationToken);
+                        
+                    }
+                    break;
+                case "Хотилово":
+                    perem = GetUrl("171098");
+                    for (int i = 0; i < perem.Count; i++)
+                    {
+                       
+                        string msgForBot = ModelMessage.ToString(perem[i]);
+
+                    // Echo received message text
+                    Message sentMessage = await botClient.SendTextMessageAsync(
+                        chatId: chatId,
+                        text: msgForBot,
+                        // parseMode: ParseMode.MarkdownV2,
+                        disableNotification: true,
+                        cancellationToken: cancellationToken);
+                        
+                    }
+                    break;
+                case "Москва":
+                    perem = GetUrl("101000");
+                    for (int i = 0; i < perem.Count; i++)
+                    {
+                       
+                        string msgForBot = ModelMessage.ToString(perem[i]);
 
                     // Echo received message text
                     Message sentMessage = await botClient.SendTextMessageAsync(
@@ -106,8 +160,8 @@ class Program
         {
             Keyboard = new List<List<KeyboardButton>>
             {
-                new List<KeyboardButton>{ new KeyboardButton("weather") { Text = "Погода"}, new KeyboardButton("3") { Text = "2"}},
-                new List<KeyboardButton>{ new KeyboardButton("2") { Text = "3"}, new KeyboardButton("3") { Text = "4"}}
+                new List<KeyboardButton>{ new KeyboardButton("weather") { Text = "Хотилово"}, new KeyboardButton("3") { Text = "Бологое"}},
+                new List<KeyboardButton>{ new KeyboardButton("2") { Text = "Ярославль"}, new KeyboardButton("3") { Text = "Москва"}}
             }
 
         };
