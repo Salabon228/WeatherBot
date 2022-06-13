@@ -1,45 +1,17 @@
-﻿// using Newtonsoft;
-// using Newtonsoft.Json;
-// using Newtonsoft.Json.Linq;
-// using Telegram.Bot;
-
-// string token_weater = File.ReadAllText("C://token_weather.txt");
-// string tokenBot = File.ReadAllText("C://token.txt");
-// string url = $"http://api.openweathermap.org/data/2.5/forecast?zip=171098,ru&appid={token_weater}&cnt=3&units=metric&lang=ru";
-
-
-// HttpClient hc = new HttpClient();
-
-// string json = hc.GetStringAsync(url).Result; // здесь ответ от сервера
-
-// JsonParse.Init(json);
-// List<ModelMessage> msgs = JsonParse.Parse();
-
-// Bot.Init(tokenBot);
-
-//     for (int i = 0; i < msgs.Count; i++)
-//     {
-//         System.Console.WriteLine(ModelMessage.ToString(msgs[i]));
-//         System.Console.WriteLine();
-//         string msgForBot = ModelMessage.ToString(msgs[i]);
-//         Bot.SendMessage("428548883", msgForBot);
-//         Thread.Sleep(1000);
-//     }
-
-using Telegram.Bot;
+﻿using Telegram.Bot;
 using Telegram.Bot.Exceptions;
 using Telegram.Bot.Extensions.Polling;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
+using Telegram.Bot.Types.ReplyMarkups;
 
-
-internal class Program
+class Program
 {
     private static async Task Main(string[] args)
     {
         string token_weater = System.IO.File.ReadAllText("C://token_weather.txt");
         
-        string url = $"http://api.openweathermap.org/data/2.5/forecast?zip=171098,ru&appid={token_weater}&cnt=3&units=metric&lang=ru";
+        string url = $"http://api.openweathermap.org/data/2.5/forecast?zip=171098,ru&appid={token_weater}&cnt=5&units=metric&lang=ru";
 
         HttpClient hc = new HttpClient();
 
@@ -87,21 +59,29 @@ internal class Program
             var chatId = update.Message.Chat.Id;
             var messageText = update.Message.Text;
 
-            Console.WriteLine($"Received a '{messageText}' message in chat {chatId}.");
+            Console.WriteLine($"Пришло сообщение '{messageText}' в чат {chatId}.");
 
-            for (int i = 0; i < msgs.Count; i++)
+            await botClient.SendTextMessageAsync(chatId, messageText, replyMarkup: GetButtons());
+
+
+            switch (messageText)
             {
-                // System.Console.WriteLine(ModelMessage.ToString(msgs[i]));
-                // System.Console.WriteLine();
-                string msgForBot = ModelMessage.ToString(msgs[i]);
-                // Thread.Sleep(1000);
-            
+                case "Погода":
+                    for (int i = 0; i < msgs.Count; i++)
+                    {
+                       
+                        string msgForBot = ModelMessage.ToString(msgs[i]);
 
-            // Echo received message text
-            Message sendMessage = await botClient.SendTextMessageAsync(
-                chatId: chatId,
-                text: msgForBot,
-                cancellationToken: cancellationToken);
+                    // Echo received message text
+                    Message sentMessage = await botClient.SendTextMessageAsync(
+                        chatId: chatId,
+                        text: msgForBot,
+                        // parseMode: ParseMode.MarkdownV2,
+                        disableNotification: true,
+                        cancellationToken: cancellationToken);
+                        
+                    }
+                    break;
             }
         }
 
@@ -119,4 +99,20 @@ internal class Program
         }
 
     }
+
+    private static IReplyMarkup GetButtons()
+    {
+        return new ReplyKeyboardMarkup("1")
+        {
+            Keyboard = new List<List<KeyboardButton>>
+            {
+                new List<KeyboardButton>{ new KeyboardButton("weather") { Text = "Погода"}, new KeyboardButton("3") { Text = "2"}},
+                new List<KeyboardButton>{ new KeyboardButton("2") { Text = "3"}, new KeyboardButton("3") { Text = "4"}}
+            }
+
+        };
+        
+    }
+
+
 }
