@@ -81,8 +81,7 @@ class Program
                         text: msgForBot,
                         // parseMode: ParseMode.MarkdownV2,
                         disableNotification: true,
-                        cancellationToken: cancellationToken);
-                        
+                        cancellationToken: cancellationToken);                        
                     }
                     break;
                 case "Ярославль":
